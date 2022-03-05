@@ -40,7 +40,9 @@
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(241, 29);
             this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.ShowToday = false;
             this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
             // 
             // button1
             // 
@@ -54,6 +56,7 @@
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(221, 259);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(117, 23);
@@ -83,6 +86,7 @@
             this.listBox1.Size = new System.Drawing.Size(164, 160);
             this.listBox1.TabIndex = 5;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.DoubleClick += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 

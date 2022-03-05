@@ -26,13 +26,17 @@ namespace Индивидуальное_задание
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DateTime dateTime = new DateTime(
+                monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, monthCalendar1.SelectionStart.Day,
+                DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             // Добавить событие
-            Form2 form2 = new Form2(eventManager);
+            Form2 form2 = new Form2(eventManager, dateTime);
             form2.ShowDialog();
             // Выделить дату в monthCalendar1 для добавленного события
             monthCalendar1.AddBoldedDate(eventManager.Events[eventManager.Events.Count - 1].EventDate);
             // Обновить выделенные даты в monthCalendar1
             monthCalendar1.UpdateBoldedDates();
+            button2.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -48,6 +52,11 @@ namespace Индивидуальное_задание
                 // Удалить событие из eventManager
                 eventManager.Remove(selected);
             }
+            if (listBox1.Items.Count == 0)
+            {
+                button2.Enabled=false;
+                label2.Text = "Информация о выбранном событии:";
+            }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,10 +66,15 @@ namespace Индивидуальное_задание
             {
                 Event selected = (Event)listBox1.SelectedItem;
                 label2.Text = "Информация о выбранном событии:\r" + selected.EventName + "" +
-                    " " + selected.EventDate.ToString("D") + "" +
+                    " назначено на " + selected.EventDate.ToString("D") + "" +
                     " " + selected.EventDate.ToString("ddd") + "" +
-                    " " + selected.EventDate.ToString("HH:mm:ss");
+                    " в " + selected.EventDate.ToString("HH:mm:ss");
             }
+        }
+
+        private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            button1_Click(sender, e);
         }
     }
 }

@@ -8,9 +8,10 @@ namespace Индивидуальное_задание
     {
         private EventManager eventManager;
         private static int EventID = 1;
-        internal Form2(EventManager evtMng) : this()
+        internal Form2(EventManager evtMng, DateTime dateTime) : this()
         {
             this.eventManager = evtMng;
+            dateTimePicker1.Value = dateTime;
         }
         public Form2()
         {
@@ -38,11 +39,12 @@ namespace Индивидуальное_задание
             EventID++;
         }
 
-        private void textBox1_Enter(object sender, EventArgs e)
+        private void textBox1_Click(object sender, EventArgs e)
         {
             // Возращаем в исходжное положение textBox1
             textBox1.Text = null;
             textBox1.ForeColor = Color.Black;
+
         }
     }
 }
